@@ -9,7 +9,8 @@ use Illuminate\Notifications\Notifiable;
 class Restaurant extends Authenticatable
 {
     use Notifiable;
-    protected $guard = 'restaurants';
+
+    protected $guard = 'restaurant';
 
     public $type = 'restaurant';
 

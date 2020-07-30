@@ -11,11 +11,11 @@ Auth::routes();
 
 Route::prefix('restaurant')->group(function () {
 
-    Route::get('register', 'Auth\RestaurantRegisterController@getRegister')->name('get.restaurant.register');
-    Route::post('register', 'Auth\RestaurantRegisterController@postRegister')->name('post.restaurant.register');
+    Route::get('register', 'Restaurant\RestaurantRegisterController@getRegister')->name('get.restaurant.register');
+    Route::post('register', 'Restaurant\RestaurantRegisterController@postRegister')->name('post.restaurant.register');
 
-    Route::get('login', 'Auth\RestaurantLoginController@getLogin')->name('get.restaurant.login');
-    Route::post('login', 'Auth\RestaurantLoginController@postLogin')->name('post.restaurant.login');
+    Route::get('login', 'Restaurant\RestaurantLoginController@getLogin')->name('get.restaurant.login');
+    Route::post('login', 'Restaurant\RestaurantLoginController@postLogin')->name('post.restaurant.login');
 
-    Route::get('', 'RestaurantController@getHome')->name('get.restaurant.home');
+    Route::get('', 'Restaurant\RestaurantController@getHome')->name('get.restaurant.home');
 });
