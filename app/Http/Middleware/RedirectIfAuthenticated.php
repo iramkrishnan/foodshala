@@ -18,6 +18,19 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
+        switch ($guard) {
+            case 'restaurant':
+                if(Auth::guard($guard)->check()) {
+                    return redirect()->route('get.restaurant.home');
+                }
+                break;
+            default:
+                if(Auth::guard($guard)->check()) {
+                    return redirect()->route('home');
+                }
+                break;
+        }
+
         if (Auth::guard($guard)->check()) {
             return redirect(RouteServiceProvider::HOME);
         }
