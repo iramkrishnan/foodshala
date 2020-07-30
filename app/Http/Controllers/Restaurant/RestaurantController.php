@@ -13,6 +13,6 @@ class RestaurantController extends Controller
 
     public function getHome()
     {
-        return view('restaurant-home');
+        return view('restaurant.restaurant-home');
     }
 }

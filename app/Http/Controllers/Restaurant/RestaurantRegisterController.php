@@ -20,7 +20,7 @@ class RestaurantRegisterController extends Controller
 
     public function getRegister()
     {
-        return view('auth.restaurant-register');
+        return view('restaurant.restaurant-register');
     }
 
     public function postRegister(RegisterFormRequest $request)

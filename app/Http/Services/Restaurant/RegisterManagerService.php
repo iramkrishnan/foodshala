@@ -3,7 +3,6 @@
 
 namespace App\Http\Services\Restaurant;
 
-
 use App\Restaurant;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
