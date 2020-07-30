@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\Restaurant\LoginFormRequest;
 use Illuminate\Support\Facades\Auth;
 
 class RestaurantLoginController extends Controller
@@ -13,19 +13,16 @@ class RestaurantLoginController extends Controller
         $this->middleware('guest:restaurant');
     }
 
-    public function showLogin()
+    public function getLogin()
     {
         return view('auth.restaurant-login');
     }
 
-    public function postLogin(Request $request)
+    public function postLogin(LoginFormRequest $request)
     {
-        $this->validate($request, [
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
+        $data = $request->validated();
 
-        $credentials = array('email' => $request['email'], 'password' => $request['password']);
+        $credentials = array('email' => $data['email'], 'password' => $data['password']);
 
         if (Auth::guard('restaurant')->attempt($credentials, $request->remember)) {
             return redirect()->intended(route('get.restaurant.home'));
