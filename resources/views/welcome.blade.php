@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>FoodShala</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -40,6 +40,12 @@
                 top: 18px;
             }
 
+            .top-left {
+                position: absolute;
+                left: 10px;
+                top: 18px;
+            }
+
             .content {
                 text-align: center;
             }
@@ -70,6 +76,18 @@
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
                     @else
+                        <a href="{{ route('get.customer.login') }}">Customer Login</a>
+
+                        @if (Route::has('register'))
+                            <a href="{{ route('get.customer.register') }}">Customer Register</a>
+                        @endif
+                    @endauth
+                </div>
+
+                <div class="top-left links">
+                    @auth
+                        <a href="{{ url('/home') }}">Home</a>
+                    @else
                         <a href="{{ route('get.restaurant.login') }}">Restaurant Login</a>
 
                         @if (Route::has('register'))
@@ -87,3 +105,4 @@
         </div>
     </body>
 </html>
+

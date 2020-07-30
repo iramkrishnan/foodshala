@@ -66,6 +66,11 @@ class Handler extends ExceptionHandler
             case 'restaurant':
                 $login = 'get.restaurant.login';
                 break;
+
+            case 'customer':
+                $login = 'get.customer.login';
+                break;
+
             default:
                 $login = 'login';
                 break;

@@ -19,3 +19,14 @@ Route::prefix('restaurant')->group(function () {
 
     Route::get('', 'Restaurant\RestaurantController@getHome')->name('get.restaurant.home');
 });
+
+Route::prefix('customer')->group(function () {
+
+    Route::get('register', 'Customer\CustomerRegisterController@getRegister')->name('get.customer.register');
+    Route::post('register', 'Customer\CustomerRegisterController@postRegister')->name('post.customer.register');
+
+    Route::get('login', 'Customer\CustomerLoginController@getLogin')->name('get.customer.login');
+    Route::post('login', 'Customer\CustomerLoginController@postLogin')->name('post.customer.login');
+
+    Route::get('', 'Customer\CustomerController@getHome')->name('get.customer.home');
+});

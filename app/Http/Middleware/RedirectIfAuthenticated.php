@@ -11,21 +11,28 @@ class RedirectIfAuthenticated
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @param  string|null  $guard
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure $next
+     * @param string|null $guard
      * @return mixed
      */
     public function handle($request, Closure $next, $guard = null)
     {
         switch ($guard) {
             case 'restaurant':
-                if(Auth::guard($guard)->check()) {
+                if (Auth::guard($guard)->check()) {
                     return redirect()->route('get.restaurant.home');
                 }
                 break;
+
+            case 'customer':
+                if (Auth::guard($guard)->check()) {
+                    return redirect()->route('get.customer.home');
+                }
+                break;
+
             default:
-                if(Auth::guard($guard)->check()) {
+                if (Auth::guard($guard)->check()) {
                     return redirect()->route('home');
                 }
                 break;
