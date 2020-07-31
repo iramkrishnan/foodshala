@@ -6,6 +6,7 @@ use App\Http\Requests\Menu\AddMenuItemFormRequest;
 use App\Http\Services\Menu\MenuItemManagerService;
 use App\MenuItem;
 use App\Http\Controllers\Controller;
+use Illuminate\Pagination\Paginator;
 
 class MenuController extends Controller
 {
@@ -19,7 +20,7 @@ class MenuController extends Controller
 
     public function getList()
     {
-        $menuItems = MenuItem::all();
+        $menuItems = MenuItem::paginate(15);
 
         return view('menu.menu', ['menuItems' => $menuItems,]);
     }
@@ -40,7 +41,7 @@ class MenuController extends Controller
 
     public function getInfo(MenuItem $menuItem)
     {
-        $restaurants = $menuItem->restaurants()->orderBy('price')->get();
+        $restaurants = $menuItem->restaurants()->orderBy('price')->paginate(10);
 
         return view('menu.menu-item', ['menuItem' => $menuItem, 'restaurants' => $restaurants]);
     }

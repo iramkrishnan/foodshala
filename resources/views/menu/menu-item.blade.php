@@ -15,6 +15,9 @@
                         </li>
                     @endforeach
                 </div>
+                <div class="container text-center my-2">
+                    {{ $restaurants->links() }}
+                </div>
             </div>
         </div>
     </div>
