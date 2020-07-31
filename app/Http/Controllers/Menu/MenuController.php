@@ -13,7 +13,7 @@ class MenuController extends Controller
 
     public function __construct(MenuItemManagerService $menuItemManagerService)
     {
-        $this->middleware('auth:restaurant', ['except' => ['getList']]);
+        $this->middleware('auth:restaurant', ['except' => ['getList', 'getInfo']]);
         $this->menuItemManagerService = $menuItemManagerService;
     }
 
@@ -21,9 +21,7 @@ class MenuController extends Controller
     {
         $menuItems = MenuItem::all();
 
-        return view('menu.menu', [
-            'menuItems' => $menuItems,
-        ]);
+        return view('menu.menu', ['menuItems' => $menuItems,]);
     }
 
     public function getAdd()
@@ -38,5 +36,12 @@ class MenuController extends Controller
         $this->menuItemManagerService->store($data);
 
         return redirect()->route('get.menu');
+    }
+
+    public function getInfo($item)
+    {
+        $menuItem = MenuItem::with('restaurants')->findOrFail($item);
+
+        return view('menu.menu-item', ['menuItem' => $menuItem,]);
     }
 }

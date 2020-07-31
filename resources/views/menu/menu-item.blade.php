@@ -5,9 +5,10 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Menu') }}</div>
-                    @foreach($menuItems as $menuItem)
-                        <li><a href="/menu/{{$menuItem->id}}">{{$menuItem->menu_item}}</a></li>
+                    <div class="card-header"><h2>{{$menuItem->menu_item}}</h2></div>
+                    <h4>Available at the following restaurants:</h4>
+                    @foreach($menuItem->restaurants as $menuItem)
+                        <li> {{$menuItem->name}}</li>
                     @endforeach
                 </div>
             </div>
