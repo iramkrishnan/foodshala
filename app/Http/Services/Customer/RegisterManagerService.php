@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Http\Services\Customer;
 
 use App\Customer;

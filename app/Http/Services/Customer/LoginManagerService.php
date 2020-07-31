@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Http\Services\Customer;
-
 
 use Illuminate\Support\Facades\Auth;
 

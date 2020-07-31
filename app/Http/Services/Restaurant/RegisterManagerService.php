@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Http\Services\Restaurant;
 
 use App\Restaurant;
