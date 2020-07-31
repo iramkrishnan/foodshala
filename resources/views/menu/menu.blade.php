@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-header">{{ __('Menu') }}</div>
                     @foreach($menuItems as $menuItem)
-                        <li><a href="/menu/{{$menuItem->id}}">{{$menuItem->menu_item}}</a></li>
+                        <li><a href="/menu/{{$menuItem->slug}}">{{$menuItem->menu_item}}</a></li>
                     @endforeach
                 </div>
             </div>

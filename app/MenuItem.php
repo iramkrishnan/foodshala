@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class MenuItem extends Model
 {
     protected $fillable = [
-        'menu_item',
+        'menu_item', 'slug',
     ];
 
     public function restaurants(): BelongsToMany

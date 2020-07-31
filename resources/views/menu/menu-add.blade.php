@@ -8,7 +8,7 @@
                     <div class="card-header">{{ __('Add Menu Item') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('post.add.menu') }}">
+                        <form method="POST" action="{{ route('post.menu.add') }}">
                             @csrf
 
                             <div class="form-group row">

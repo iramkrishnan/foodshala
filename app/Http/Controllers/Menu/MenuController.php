@@ -35,13 +35,11 @@ class MenuController extends Controller
 
         $this->menuItemManagerService->store($data);
 
-        return redirect()->route('get.menu');
+        return redirect()->route('get.menu.list');
     }
 
-    public function getInfo($item)
+    public function getInfo(MenuItem $menuItem)
     {
-        $menuItem = MenuItem::with('restaurants')->findOrFail($item);
-
         return view('menu.menu-item', ['menuItem' => $menuItem,]);
     }
 }

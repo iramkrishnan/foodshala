@@ -33,9 +33,9 @@ Route::prefix('customer')->group(function () {
 
 Route::prefix('menu')->group(function () {
 
-    Route::get('', 'Menu\MenuController@getList')->name('get.menu');
-    Route::get('add', 'Menu\MenuController@getAdd')->name('get.add.menu');
-    Route::post('add', 'Menu\MenuController@postAdd')->name('post.add.menu');
+    Route::get('', 'Menu\MenuController@getList')->name('get.menu.list');
+    Route::get('add', 'Menu\MenuController@getAdd')->name('get.menu.add');
+    Route::post('add', 'Menu\MenuController@postAdd')->name('post.menu.add');
 
-    Route::get('{item}', 'Menu\MenuController@getInfo')->name('get.menu.info');
+    Route::get('{menuItem:slug}', 'Menu\MenuController@getInfo')->name('get.menu.info');
 });

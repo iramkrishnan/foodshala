@@ -16,6 +16,7 @@ class CreateMenuItemsTable extends Migration
         Schema::create('menu_items', function (Blueprint $table) {
             $table->id();
             $table->string('menu_item');
+            $table->string('slug')->unique();
             $table->timestamps();
         });
     }
