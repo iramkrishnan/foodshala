@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers\Menu;
 
+use App\Http\Requests\Menu\AddMenuItemFormRequest;
+use App\Http\Services\Menu\MenuItemManagerService;
 use App\MenuItem;
 use App\Http\Controllers\Controller;
-use App\RestaurantMenuItem;
-use Illuminate\Http\Request;
 
 class MenuController extends Controller
 {
-    public function __construct()
+    public MenuItemManagerService $menuItemManagerService;
+
+    public function __construct(MenuItemManagerService $menuItemManagerService)
     {
         $this->middleware('auth:restaurant', ['except' => ['getList']]);
+        $this->menuItemManagerService = $menuItemManagerService;
     }
 
     public function getList()
@@ -28,20 +31,11 @@ class MenuController extends Controller
         return view('menu.menu-add');
     }
 
-    public function postAdd(Request $request)
+    public function postAdd(AddMenuItemFormRequest $request)
     {
-        request()->validate([
-            'menu_item' => 'required|string'
-        ]);
+        $data = $request->validated();
 
-        $menuItem = MenuItem::firstOrCreate(
-            ['menu_item' => $request['menu_item']],
-        );
-
-        RestaurantMenuItem::firstOrCreate([
-            'restaurant_id' => $request->user()->id,
-            'menu_item_id' => $menuItem->id,
-        ]);
+        $this->menuItemManagerService->store($data);
 
         return redirect()->route('get.menu');
     }
