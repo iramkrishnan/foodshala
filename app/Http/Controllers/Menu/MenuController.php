@@ -40,6 +40,8 @@ class MenuController extends Controller
 
     public function getInfo(MenuItem $menuItem)
     {
-        return view('menu.menu-item', ['menuItem' => $menuItem,]);
+        $restaurants = $menuItem->restaurants()->orderBy('price')->get();
+
+        return view('menu.menu-item', ['menuItem' => $menuItem, 'restaurants' => $restaurants]);
     }
 }

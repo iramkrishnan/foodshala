@@ -7,8 +7,12 @@
                 <div class="card">
                     <div class="card-header"><h2>{{$menuItem->menu_item}}</h2></div>
                     <h4>Available at the following restaurants:</h4>
-                    @foreach($menuItem->restaurants as $menuItem)
-                        <li> {{$menuItem->name}}</li>
+                    @foreach($restaurants as $menuItem)
+                        <li>{{$menuItem->name}} for Rs. {{$menuItem->pivot->price}} ({{$menuItem->pivot->type}})
+                            @if ($menuItem->pivot->description !== null)
+                                - {{$menuItem->pivot->description}}
+                            @endif
+                        </li>
                     @endforeach
                 </div>
             </div>

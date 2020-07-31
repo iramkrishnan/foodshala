@@ -17,6 +17,9 @@ class CreateRestaurantMenuItemsTable extends Migration
             $table->id();
             $table->foreignId('restaurant_id');
             $table->foreignId('menu_item_id');
+            $table->integer('price');
+            $table->enum('type', ['vegetarian', 'non-vegetarian']);
+            $table->string('description')->nullable();
             $table->timestamps();
 
             $table->foreign('restaurant_id')->references('id')->on('restaurants');

@@ -18,6 +18,9 @@ class MenuItemManagerService
         RestaurantMenuItem::firstOrCreate([
             'restaurant_id' => request()->user()->id,
             'menu_item_id' => $menuItem->id,
+            'price' => $data['price'],
+            'type' => $data['type'],
+            'description' => $data['description'],
         ]);
     }
 }
