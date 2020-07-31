@@ -30,3 +30,10 @@ Route::prefix('customer')->group(function () {
 
     Route::get('', 'Customer\CustomerController@getHome')->name('get.customer.home');
 });
+
+Route::prefix('menu')->group(function () {
+
+    Route::get('', 'Menu\MenuController@getList')->name('get.menu');
+    Route::get('add', 'Menu\MenuController@getAdd')->name('get.add.menu');
+    Route::post('add', 'Menu\MenuController@postAdd')->name('post.add.menu');
+});
