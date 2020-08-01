@@ -46,6 +46,12 @@
                 top: 18px;
             }
 
+            .top-center {
+                position: absolute;
+                left: 45%;
+                top: 18px;
+            }
+
             .content {
                 text-align: center;
             }
@@ -94,6 +100,11 @@
                             <a href="{{ route('get.restaurant.register') }}">Restaurant Register</a>
                         @endif
                     @endauth
+                </div>
+
+                <div class="top-center links">
+                        <a href="{{ route('get.menu.list') }}">Menu</a>
+                        <a href="{{ route('get.restaurant.list') }}">Restaurants</a>
                 </div>
             @endif
 

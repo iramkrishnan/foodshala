@@ -16,6 +16,7 @@ Route::prefix('restaurant')->group(function () {
     Route::post('login', 'Restaurant\RestaurantLoginController@postLogin')->name('post.restaurant.login');
 
     Route::get('', 'Restaurant\RestaurantController@getHome')->name('get.restaurant.home');
+
 });
 
 Route::prefix('customer')->group(function () {
@@ -38,4 +39,9 @@ Route::prefix('menu')->group(function () {
     Route::get('{menuItem:slug}', 'Menu\MenuController@getInfo')->name('get.menu.info');
 });
 
+Route::get('restaurants', 'Restaurant\RestaurantController@getList')->name('get.restaurant.list');
+
 Route::get('{restaurant:slug}/{menuItem:slug}', 'Restaurant\RestaurantController@getMenuItemInfo')->name('get.restaurant.menu_item_info');
+
+Route::get('{restaurant:slug}', 'Restaurant\RestaurantController@getMenu')->name('get.restaurant.info');
+
