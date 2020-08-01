@@ -13,6 +13,9 @@ class RegisterManagerService
         $restaurant = new Restaurant();
         $restaurant->name = $data['name'];
         $restaurant->email = $data['email'];
+        $restaurant->phone = $data['phone'];
+        $restaurant->address = $data['address'];
+        $restaurant->cuisine = $data['cuisine'];
         $restaurant->password = Hash::make($data['password']);
         $restaurant->save();
     }
