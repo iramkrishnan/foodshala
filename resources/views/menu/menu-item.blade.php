@@ -7,11 +7,13 @@
                 <div class="card">
                     <div class="card-header"><h2>{{$menuItem->menu_item}}</h2></div>
                     <h4>Available at the following restaurants:</h4>
-                    @foreach($restaurants as $menuItem)
-                        <li>{{$menuItem->name}} for <strong>&#8377; {{$menuItem->pivot->price}} </strong> ({{$menuItem->pivot->type}})
-                            @if ($menuItem->pivot->description !== null)
-                                - {{$menuItem->pivot->description}}
+                    @foreach($restaurants as $restaurant)
+                        <li>
+                           <a href="/{{$restaurant->slug}}/{{$menuItem->slug}}">  {{$restaurant->name}} for <strong>&#8377; {{$restaurant->pivot->price}} </strong> ({{$restaurant->pivot->type}})
+                            @if ($restaurant->pivot->description !== null)
+                                - {{$restaurant->pivot->description}}
                             @endif
+                           </a>
                         </li>
                     @endforeach
                 </div>

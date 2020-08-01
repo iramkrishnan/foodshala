@@ -37,3 +37,5 @@ Route::prefix('menu')->group(function () {
 
     Route::get('{menuItem:slug}', 'Menu\MenuController@getInfo')->name('get.menu.info');
 });
+
+Route::get('{restaurant:slug}/{menuItem:slug}', 'Restaurant\RestaurantController@getMenuItemInfo')->name('get.restaurant.menu_item_info');

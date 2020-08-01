@@ -27,8 +27,8 @@ class Restaurant extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function foodItems(): BelongsToMany
+    public function menuItems(): BelongsToMany
     {
-        return $this->belongsToMany(MenuItem::class, 'restaurant_menu_items', 'restaurant_id', 'menu_item_id');
+        return $this->belongsToMany(MenuItem::class, 'restaurant_menu_items', 'restaurant_id', 'menu_item_id')->withPivot('price', 'type', 'description');
     }
 }
