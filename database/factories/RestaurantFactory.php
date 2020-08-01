@@ -9,7 +9,7 @@ $factory->define(Restaurant::class, function (Faker $faker) {
     $restaurantSuffixes = ['Resto', 'Cafe', 'Brasserie', 'Bistro', 'Cafeteria'];
 
     return [
-        'name' => $faker->unique()->city . ' ' . $restaurantSuffixes[array_rand($restaurantSuffixes)],
+        'name' => $faker->unique()->streetName . ' ' . $restaurantSuffixes[array_rand($restaurantSuffixes)],
         'email' => $faker->email,
         'phone' => $faker->phoneNumber,
         'address' => $faker->address,
