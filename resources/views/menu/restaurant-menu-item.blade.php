@@ -25,7 +25,15 @@
                     <li>Address: {{$restaurant->address}}</li>
                     <li>Email ID: {{$restaurant->email}}</li>
                 </div>
-                <button class="mt-3">Order here</button>
+
+                <form action="{{route('post.customer.cart')}}" method="POST">
+                    @csrf
+                    <input type="hidden" name="menu_item_id" value="{{$menuItem->id}}">
+                    <input type="hidden" name="restaurant_id" value="{{$restaurant->id}}">
+                    <input type="hidden" name="menu_item_price" value="{{$menuItem->pivot->price}}">
+                    <input type="hidden" name="menu_item_type" value="{{$menuItem->pivot->type}}">
+                    <button type="submit" class="mt-3">Add to Cart</button>
+                </form>
 
             </div>
         </div>

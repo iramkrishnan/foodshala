@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Restaurant;
 use App\Http\Controllers\Controller;
 use App\MenuItem;
 use App\Restaurant;
-use function GuzzleHttp\Promise\all;
 
 class RestaurantController extends Controller
 {

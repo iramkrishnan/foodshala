@@ -39,9 +39,13 @@ Route::prefix('menu')->group(function () {
     Route::get('{menuItem:slug}', 'Menu\MenuController@getInfo')->name('get.menu.info');
 });
 
+Route::prefix('cart')->group(function () {
+    Route::get('', 'Customer\CustomerController@getCart')->name('get.customer.cart');
+    Route::post('', 'Customer\CustomerController@postCart')->name('post.customer.cart');
+});
+
 Route::get('restaurants', 'Restaurant\RestaurantController@getList')->name('get.restaurant.list');
 
 Route::get('{restaurant:slug}/{menuItem:slug}', 'Restaurant\RestaurantController@getMenuItemInfo')->name('get.restaurant.menu_item_info');
 
 Route::get('{restaurant:slug}', 'Restaurant\RestaurantController@getMenu')->name('get.restaurant.info');
-
