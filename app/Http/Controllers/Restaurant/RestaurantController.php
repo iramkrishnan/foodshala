@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Restaurant;
 
 use App\Http\Controllers\Controller;
+use App\OrderDetail;
 use App\Restaurant;
 use App\RestaurantMenuItem;
 
@@ -15,7 +16,19 @@ class RestaurantController extends Controller
 
     public function getHome()
     {
-        return view('restaurant.restaurant-home');
+
+        $orderDetails = OrderDetail::query()
+            ->where('restaurant_id', '=', request()->user()->id)
+            ->with('restaurantMenuItem', 'order')
+            ->orderBy('created_at', 'DESC')
+            ->get();
+
+        $orders = [];
+        foreach ($orderDetails as $orderDetail) {
+            $orders[$orderDetail->order_id][] = $orderDetail;
+        }
+//        dd($orders);
+        return view('restaurant.restaurant-home', ['orders' => $orders]);
     }
 
     public function getMenu(Restaurant $restaurant)

@@ -22,17 +22,26 @@
             @foreach($orders as $order)
             <div class="col-md-8 mt-2">
                 <div class="card">
-                    <div class="card-header">Order #{{$order->id}}</div>
+                    <div class="card-header">Order #{{$order->id}} <p>Ordered on: {{$order->created_at}}</p></div>
                     <div class="card-body">
                         @foreach($order->orderDetails as $orderDetail)
 
                         <li>
-                            Quantity: {{$orderDetail->quantity}} |
-                            Price: {{$orderDetail->restaurantMenuItem->price}} |
-                            Type: {{$orderDetail->restaurantMenuItem->type}} |
-                            Description: {{$orderDetail->restaurantMenuItem->description}} |
-                            Food Item: {{$orderDetail->restaurantMenuItem->menuItem->menu_item}} |
-                            Restaurant: {{$orderDetail->restaurantMenuItem->restaurant->name}} |
+                            <a href="/{{$orderDetail->restaurantMenuItem->restaurant->slug}}">Restaurant: {{$orderDetail->restaurantMenuItem->restaurant->name}} </a> <br>
+                            Food Item: {{$orderDetail->restaurantMenuItem->menuItem->menu_item}}
+
+                            @if($orderDetail->restaurantMenuItem->type == 'non-vegetarian')
+                            (<strong style="color: red">{{$orderDetail->restaurantMenuItem->type}}</strong>) <br>
+                            @else()
+                            (<strong style="color: green">{{$orderDetail->restaurantMenuItem->type}}</strong>) <br>
+                            @endif
+
+                            Quantity: {{$orderDetail->quantity}} <br>
+                            Price: {{$orderDetail->restaurantMenuItem->price}} <br>
+
+                            Description: {{$orderDetail->restaurantMenuItem->description}} <br>
+
+
 
                         </li>
                         <hr>
