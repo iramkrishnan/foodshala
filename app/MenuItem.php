@@ -13,6 +13,6 @@ class MenuItem extends Model
 
     public function restaurants(): BelongsToMany
     {
-        return $this->belongsToMany(Restaurant::class, 'restaurant_menu_items')->withPivot('price', 'type', 'description');
+        return $this->belongsToMany(Restaurant::class, 'restaurant_menu_items')->withPivot('id', 'price', 'type', 'description');
     }
 }

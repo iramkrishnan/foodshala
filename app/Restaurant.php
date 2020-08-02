@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -30,5 +31,10 @@ class Restaurant extends Authenticatable
     public function menuItems(): BelongsToMany
     {
         return $this->belongsToMany(MenuItem::class, 'restaurant_menu_items', 'restaurant_id', 'menu_item_id')->withPivot('price', 'type', 'description');
+    }
+
+    public function restaurantMenuItems(): HasMany
+    {
+        return $this->hasMany(RestaurantMenuItem::class)->with('menuItem');
     }
 }
