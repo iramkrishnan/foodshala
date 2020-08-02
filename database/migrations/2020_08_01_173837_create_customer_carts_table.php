@@ -16,12 +16,11 @@ class CreateCustomerCartsTable extends Migration
         Schema::create('customer_carts', function (Blueprint $table) {
             $table->id();
             $table->foreignId('customer_id');
-            $table->foreignId('restaurant_id');
-            $table->foreignId('menu_item_id');
+            $table->foreignId('restaurant_menu_item_id');
             $table->integer('quantity')->default(1);
-            $table->integer('menu_item_price');
-            $table->enum('menu_item_type', ['vegetarian', 'non-vegetarian']);
             $table->timestamps();
+
+            $table->foreign('restaurant_menu_item_id')->references('id')->on('restaurant_menu_items');
         });
     }
 

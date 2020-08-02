@@ -8,16 +8,16 @@
                     <div class="card-header"><h2>{{ __('Your Cart') }}</h2></div>
                     @foreach($cartItems as $cartItem)
                         <li class="my-1">
-                            Food: {{$cartItem->menuItem->menu_item}} ({{$cartItem->menu_item_type}}) |
+                            Food: {{$cartItem->restaurantMenuItem->menuItem->menu_item}} ({{$cartItem->restaurantMenuItem->type}}) |
                             Quantity: {{$cartItem->quantity}} |
-                            at Rs. {{$cartItem->menu_item_price}} per piece |
-                            from {{$cartItem->restaurant->name}}
+                            at Rs. {{$cartItem->restaurantMenuItem->price}} per piece |
+                            from {{$cartItem->restaurantMenuItem->restaurant->name}}
                         </li>
                         <hr>
                     @endforeach
 
-                    @if($total != 0)
-                        <h4 class="mt-2">Total Price: {{$total}}</h4>
+                    @if($totalAmount != 0)
+                        <h4 class="mt-2">Total Price: &#8377; {{$totalAmount}}</h4>
 
 
                 </div>
