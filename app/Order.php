@@ -12,6 +12,8 @@ class Order extends Model
         'customer_id', 'total_amount',
     ];
 
+    protected $with = 'customer';
+
     public function orderDetails(): HasMany
     {
         return $this->hasMany(OrderDetail::class);

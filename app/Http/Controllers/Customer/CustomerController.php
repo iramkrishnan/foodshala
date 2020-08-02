@@ -92,6 +92,7 @@ class CustomerController extends Controller
         foreach ($data['cartItems'] as $cartItem) {
             OrderDetail::create([
                 'order_id' => $order->id,
+                'restaurant_id' => $cartItem['restaurantMenuItem']['restaurant']['id'],
                 'restaurant_menu_item_id' => $cartItem['restaurantMenuItem']['id'],
                 'quantity' => $cartItem->quantity,
             ]);
