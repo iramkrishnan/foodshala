@@ -16,8 +16,14 @@
                         <hr>
                     @endforeach
 
-                    <h4 class="mt-2">Total Price: {{$total}}</h4>
+                    @if($total != 0)
+                        <h4 class="mt-2">Total Price: {{$total}}</h4>
+
+
                 </div>
+                <button class="mt-2"><a href="{{route('get.customer.checkout')}}">Checkout</a></button>
+                @endif
+
             </div>
         </div>
     </div>
