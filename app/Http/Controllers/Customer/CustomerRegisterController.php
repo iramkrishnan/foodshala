@@ -20,7 +20,7 @@ class CustomerRegisterController extends Controller
 
     public function getRegister()
     {
-        return view('customer.customer-register');
+        return view('customer.register');
     }
 
     public function postRegister(RegisterFormRequest $request)

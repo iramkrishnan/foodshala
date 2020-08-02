@@ -16,7 +16,6 @@ class RestaurantController extends Controller
 
     public function getHome()
     {
-
         $orderDetails = OrderDetail::query()
             ->where('restaurant_id', '=', request()->user()->id)
             ->with('restaurantMenuItem', 'order')
@@ -27,7 +26,6 @@ class RestaurantController extends Controller
         foreach ($orderDetails as $orderDetail) {
             $orders[$orderDetail->order_id][] = $orderDetail;
         }
-//        dd($orders);
         return view('restaurant.restaurant-home', ['orders' => $orders]);
     }
 
