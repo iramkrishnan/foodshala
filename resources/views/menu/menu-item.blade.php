@@ -9,7 +9,7 @@
                     <h4>Available at the following restaurants:</h4>
                     @foreach($restaurants as $restaurant)
                         <li>
-                           <a href="/{{$restaurant->slug}}/{{$menuItem->slug}}">  {{$restaurant->name}} for <strong>&#8377; {{$restaurant->pivot->price}} </strong> ({{$restaurant->pivot->type}})
+                           <a href="/{{$restaurant->slug}}/{{$menuItem->slug}}/{{$restaurant->pivot->id}}">  {{$restaurant->name}} for <strong>&#8377; {{$restaurant->pivot->price}} </strong> ({{$restaurant->pivot->type}})
                             @if ($restaurant->pivot->description !== null)
                                 - {{$restaurant->pivot->description}}
                             @endif

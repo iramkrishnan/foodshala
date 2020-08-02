@@ -18,17 +18,18 @@
                 <div class="card">
                     <div class="card-header"><h2>Menu</h2></div>
 
-                    @foreach($menuItems as $menuItem)
-
-                        <li><a href="/{{$restaurant->slug}}/{{$menuItem->slug}}"> Menu Item: {{$menuItem->menu_item}} | Price: &#8377; {{$menuItem->pivot->price}}
-                                | {{$menuItem->pivot->type}}
+                    @foreach($restaurantMenuItems as $restaurantMenuItem)
+                        <li>
+                            <a href="/{{$restaurant->slug}}/{{$restaurantMenuItem->menuItem->slug}}/{{$restaurantMenuItem->id}}">{{$restaurantMenuItem->menuItem->menu_item}}
+                                | Price: &#8377; {{$restaurantMenuItem->price}}
+                                | {{$restaurantMenuItem->type}}
                             </a></li>
-                        {{--                        <li>Photo: {{$menuItem->pivot->photo}}</li>--}}
+{{--                        <li>Photo: {{$restaurantMenuItem->photo}}</li>--}}
                     @endforeach
                 </div>
 
                 <div class="container text-center my-2">
-                    {{ $menuItems->links() }}
+                    {{ $restaurantMenuItems->links() }}
                 </div>
 
 

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Restaurant;
 
 use App\Http\Controllers\Controller;
-use App\MenuItem;
 use App\Restaurant;
+use App\RestaurantMenuItem;
 
 class RestaurantController extends Controller
 {
@@ -20,14 +20,18 @@ class RestaurantController extends Controller
 
     public function getMenu(Restaurant $restaurant)
     {
-        $menuItems = $restaurant->menuItems()->paginate(10);
+        $restaurantMenuItems = $restaurant->restaurantMenuItems()->paginate(15);
 
-        return view('restaurant.restaurant-menu', ['restaurant' => $restaurant, 'menuItems' => $menuItems,]);
+        return view('restaurant.restaurant-menu', ['restaurant' => $restaurant, 'restaurantMenuItems' => $restaurantMenuItems,]);
     }
 
-    public function getMenuItemInfo(Restaurant $restaurant, MenuItem $menuItem)
+    public function getMenuItemInfo($restaurant, $menuItem, $id)
     {
-        return view('menu.restaurant-menu-item', ['menuItem' => $menuItem, 'restaurant' => $restaurant]);
+        $restaurantMenuItem = RestaurantMenuItem::with('restaurant', 'menuItem')
+            ->where('id', '=', $id)
+            ->first();
+
+        return view('menu.restaurant-menu-item', ['restaurantMenuItem' => $restaurantMenuItem]);
     }
 
     public function getList()

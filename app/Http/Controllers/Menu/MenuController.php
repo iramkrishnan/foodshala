@@ -6,7 +6,6 @@ use App\Http\Requests\Menu\AddMenuItemFormRequest;
 use App\Http\Services\Menu\MenuItemManagerService;
 use App\MenuItem;
 use App\Http\Controllers\Controller;
-use Illuminate\Pagination\Paginator;
 
 class MenuController extends Controller
 {
@@ -20,7 +19,7 @@ class MenuController extends Controller
 
     public function getList()
     {
-        $menuItems = MenuItem::paginate(15);
+        $menuItems = MenuItem::query()->orderBy('created_at', 'DESC')->paginate(15);
 
         return view('menu.menu', ['menuItems' => $menuItems,]);
     }
