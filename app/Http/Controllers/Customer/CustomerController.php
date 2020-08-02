@@ -17,32 +17,33 @@ class CustomerController extends Controller
 
     public function getHome()
     {
-        return view('customer.customer-home');
+        $orders = Order::query()
+            ->with('orderDetails')
+            ->where('customer_id', '=', request()->user()->id)
+            ->orderBy('created_at', 'DESC')
+            ->get();
+
+        return view('customer.customer-home', ['orders' => $orders]);
     }
 
     public function postCart(Request $request)
     {
         $customerCart = CustomerCart::query()
             ->where('customer_id', '=', $request->user()->id)
-            ->where('restaurant_id', '=', $request->all()['restaurant_id'])
-            ->where('menu_item_id', '=', $request->all()['menu_item_id'])
-            ->where('menu_item_price', '=', $request->all()['menu_item_price'])
-            ->where('menu_item_type', '=', $request->all()['menu_item_type'])
+            ->where('restaurant_menu_item_id', '=', $request->all()['restaurant_menu_item_id'])
             ->first();
 
-        if($customerCart) {
+        if ($customerCart) {
             $customerCart->update([
-                'quantity' => $customerCart['quantity'] + 1,
+                'quantity' => $customerCart['quantity'] + $request->all()['quantity'],
             ]);
             return redirect()->back();
         }
 
         CustomerCart::create([
             'customer_id' => $request->user()->id,
-            'restaurant_id' => $request->all()['restaurant_id'],
-            'menu_item_id' => $request->all()['menu_item_id'],
-            'menu_item_price' => $request->all()['menu_item_price'],
-            'menu_item_type' => $request->all()['menu_item_type'],
+            'restaurant_menu_item_id' => $request->all()['restaurant_menu_item_id'],
+            'quantity' => $request->all()['quantity'],
         ]);
 
         return redirect()->back();
@@ -50,57 +51,49 @@ class CustomerController extends Controller
 
     public function getCart()
     {
+        $data = $this->calculateCart();
+        return view('cart.cart', ['cartItems' => $data['cartItems'], 'totalAmount' => $data['totalAmount']]);
+    }
+
+    public function calculateCart()
+    {
         $cartItems = CustomerCart::query()
             ->where('customer_id', '=', request()->user()->id)
-            ->with('restaurant', 'menuItem')
+            ->with('restaurantMenuItem')
             ->get();
 
         $totalAmount = 0;
         foreach ($cartItems as $cartItem) {
-            $totalAmount =  $totalAmount + $cartItem['menu_item_price'] * $cartItem['quantity'];
+            $totalAmount = $totalAmount + $cartItem['restaurantMenuItem']['price'] * $cartItem['quantity'];
         }
 
-        return view('cart.cart', ['cartItems' => $cartItems, 'total' => $totalAmount]);
+        return $data = [
+            'cartItems' => $cartItems,
+            'totalAmount' => $totalAmount,
+        ];
     }
 
     public function getCheckout()
     {
-        $cartItems = CustomerCart::query()
-            ->where('customer_id', '=', request()->user()->id)
-            ->get();
+        $data = $this->calculateCart();
 
-        $totalAmount = 0;
-        foreach ($cartItems as $cartItem) {
-            $totalAmount =  $totalAmount + $cartItem['menu_item_price'] * $cartItem['quantity'];
-        }
-
-        return view('customer.customer-checkout', ['total' => $totalAmount]);
+        return view('customer.customer-checkout', ['totalAmount' => $data['totalAmount']]);
     }
 
     public function postOrder()
     {
-        $cartItems = CustomerCart::query()
-            ->where('customer_id', '=', request()->user()->id)
-            ->get();
-
-        $totalAmount = 0;
-        foreach ($cartItems as $cartItem) {
-            $totalAmount =  $totalAmount + $cartItem['menu_item_price'] * $cartItem['quantity'];
-        }
+        $data = $this->calculateCart();
 
         $order = Order::create([
             'customer_id' => request()->user()->id,
-            'total_amount' => $totalAmount,
+            'total_amount' => $data['totalAmount'],
         ]);
 
-        foreach ($cartItems as $cartItem) {
+        foreach ($data['cartItems'] as $cartItem) {
             OrderDetail::create([
                 'order_id' => $order->id,
-                'restaurant_id' =>$cartItem->restaurant_id,
-                'menu_item_id' => $cartItem->menu_item_id,
+                'restaurant_menu_item_id' => $cartItem['restaurantMenuItem']['id'],
                 'quantity' => $cartItem->quantity,
-                'menu_item_type' => $cartItem->menu_item_type,
-                'menu_item_price' => $cartItem->menu_item_price,
             ]);
         }
 

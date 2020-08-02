@@ -51,6 +51,6 @@ Route::prefix('checkout')->group(function () {
 
 Route::get('restaurants', 'Restaurant\RestaurantController@getList')->name('get.restaurant.list');
 
-Route::get('{restaurant:slug}/{menuItem:slug}', 'Restaurant\RestaurantController@getMenuItemInfo')->name('get.restaurant.menu_item_info');
+Route::get('{restaurant_slug}/{menu_item_slug}/{id}', 'Restaurant\RestaurantController@getMenuItemInfo')->name('get.restaurant.menu_item_info');
 
 Route::get('{restaurant:slug}', 'Restaurant\RestaurantController@getMenu')->name('get.restaurant.info');
