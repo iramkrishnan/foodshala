@@ -25,7 +25,7 @@ class VegRestaurantCannotHaveNonVegMenuItem implements Rule
      */
     public function passes($attribute, $value)
     {
-        return request()->user()->cuisine == $value;
+        return request()->user()->cuisine == 'vegetarian' ? $value == 'vegetarian' : true;
     }
 
     /**
