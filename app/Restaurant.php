@@ -17,7 +17,7 @@ class Restaurant extends Authenticatable
     public $type = 'restaurant';
 
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'image',
     ];
 
     protected $hidden = [

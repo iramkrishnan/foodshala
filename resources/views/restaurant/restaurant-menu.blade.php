@@ -10,6 +10,7 @@
                     <li>Phone: {{$restaurant->phone}}</li>
                     <li>Address: {{$restaurant->address}}</li>
                     <li>Email ID: {{$restaurant->email}}</li>
+                    <img src="{{$restaurant->image}}" class="w-100">
 
 
                 </div>

@@ -16,6 +16,7 @@ class RegisterFormRequest extends FormRequest
             'address' => 'required|string|max:255',
             'cuisine' => ['required', Rule::in(['vegetarian', 'non-vegetarian'])],
             'password' => 'required|string|min:8|confirmed',
+            'image' => 'nullable|image',
         ];
     }
 }

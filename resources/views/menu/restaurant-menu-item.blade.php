@@ -13,7 +13,7 @@
                     @if ($restaurantMenuItem->description !== null)
                         <li>Description: {{$restaurantMenuItem->description}}</li>
                     @endif
-                        <li>Photo: {{$restaurantMenuItem->photo}}</li>
+                        <img src="{{$restaurantMenuItem->image}}" class="w-100">
                 </div>
                 <br>
                 <br>

@@ -8,6 +8,7 @@
                     <div class="card-header">{{ __('Menu') }}</div>
                     @foreach($menuItems as $menuItem)
                         <li><a href="/menu/{{$menuItem->slug}}">{{$menuItem->menu_item}}</a></li>
+                        <hr>
                     @endforeach
 
                 </div>

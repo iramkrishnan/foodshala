@@ -21,6 +21,7 @@ class CreateRestaurantsTable extends Migration
             $table->string('address');
             $table->enum('cuisine', ['vegetarian', 'non-vegetarian']);
             $table->string('slug');
+            $table->string('image')->default('/storage/images/restaurant.jpg');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

@@ -19,6 +19,12 @@ class RegisterManagerService
         $restaurant->cuisine = $data['cuisine'];
         $restaurant->slug = $this->makeSlug($data['name']);
         $restaurant->password = Hash::make($data['password']);
+
+        if (request('image')) {
+            $imagePath = request('image')->store('uploads', 'public');
+            $restaurant->image = '/storage/' . $imagePath;
+        }
+
         $restaurant->save();
     }
 

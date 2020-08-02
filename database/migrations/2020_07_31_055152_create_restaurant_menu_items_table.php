@@ -20,6 +20,7 @@ class CreateRestaurantMenuItemsTable extends Migration
             $table->integer('price');
             $table->enum('type', ['vegetarian', 'non-vegetarian']);
             $table->string('description')->nullable();
+            $table->string('image')->default('/storage/images/foodshala.svg');
             $table->timestamps();
 
             $table->foreign('restaurant_id')->references('id')->on('restaurants');

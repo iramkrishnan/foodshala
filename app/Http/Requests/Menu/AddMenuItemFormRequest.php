@@ -15,6 +15,7 @@ class AddMenuItemFormRequest extends FormRequest
             'price' => 'required|int|min:1',
             'type' => ["required", Rule::in(['vegetarian', 'non-vegetarian']), new VegRestaurantCannotHaveNonVegMenuItem],
             'description' => 'nullable|string|max:256',
+            'image' => 'nullable|image',
         ];
     }
 }
