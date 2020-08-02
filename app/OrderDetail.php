@@ -8,11 +8,16 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class OrderDetail extends Model
 {
     protected $fillable = [
-        'order_id', 'restaurant_id', 'menu_item_id', 'quantity', 'menu_item_type', 'menu_item_price',
+        'order_id', 'restaurant_menu_item_id', 'quantity',
     ];
-
+    protected $with = 'restaurantMenuItem';
     public function order(): BelongsTo
     {
         return $this->belongsTo(Order::class);
+    }
+
+    public function restaurantMenuItem(): BelongsTo
+    {
+        return $this->belongsTo(RestaurantMenuItem::class)->with('menuItem', 'restaurant');
     }
 }
