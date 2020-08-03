@@ -115,7 +115,7 @@
 
                                     @if($restaurantMenuItem->type == 'vegetarian')
                                         <button
-                                            class="p-2 rounded-full bg-green-600 text-white mx-5 -mb-4 hover:bg-blue-500 focus:outline-none focus:bg-blue-500">
+                                            class="p-2 rounded-full bg-green-600 text-white mx-5 -mb-4 focus:outline-none focus:bg-blue-500">
                                             <svg class="h-5 w-5" fill="" stroke-linecap="round" stroke-linejoin="round"
                                                  stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                                             </svg>
@@ -124,7 +124,7 @@
 
                                     @if($restaurantMenuItem->type == 'non-vegetarian')
                                         <button
-                                            class="p-2 rounded-full bg-red-600 text-white mx-5 -mb-4 hover:bg-blue-500 focus:outline-none focus:bg-blue-500">
+                                            class="p-2 rounded-full bg-red-600 text-white mx-5 -mb-4 focus:outline-none focus:bg-blue-500">
                                             <svg class="h-5 w-5" fill="" stroke-linecap="round" stroke-linejoin="round"
                                                  stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                                             </svg>

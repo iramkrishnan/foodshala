@@ -26,7 +26,7 @@ class RestaurantController extends Controller
         foreach ($orderDetails as $orderDetail) {
             $orders[$orderDetail->order_id][] = $orderDetail;
         }
-        return view('restaurant.home', ['orders' => $orders]);
+        return view('restaurant.restaurant-home', ['orders' => $orders]);
     }
 
     public function getMenu(Restaurant $restaurant)
