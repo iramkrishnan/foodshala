@@ -47,8 +47,8 @@ class RestaurantController extends Controller
 
     public function getList()
     {
-        $restaurants = Restaurant::paginate(15);
+        $restaurants = Restaurant::paginate(16);
 
-        return view('restaurant.restaurant-list', ['restaurants' => $restaurants]);
+        return view('restaurant.list', ['restaurants' => $restaurants]);
     }
 }

@@ -21,7 +21,7 @@ class MenuController extends Controller
     {
         $menuItems = MenuItem::query()->orderBy('created_at', 'DESC')->paginate(16);
 
-        return view('menu.menu', ['menuItems' => $menuItems,]);
+        return view('menu.list', ['menuItems' => $menuItems,]);
     }
 
     public function getAdd()
