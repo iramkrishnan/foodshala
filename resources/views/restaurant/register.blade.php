@@ -9,11 +9,12 @@
             <div class="container px-5 py-10 mx-auto flex flex-wrap items-center">
 
                 <div class="lg:w-2/6 md:w-1/2 bg-gray-200 rounded-lg p-8 flex flex-col md:mx-auto w-full mt-10 md:mt-0">
-                    <h1 class="text-gray-900 text-lg font-medium title-font mb-5"><strong>Restaurant Register</strong></h1>
+                    <h1 class="text-gray-900 text-lg font-medium title-font mb-5 text-center"><strong>Restaurant Register</strong>
+                    </h1>
 
                     @error('name')
                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
+                                        <strong style="color: red">{{ $message }}</strong>
                                     </span>
                     @enderror
                     <input id="name" type="text"
@@ -24,7 +25,7 @@
 
                     @error('email')
                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
+                                        <strong style="color: red">{{ $message }}</strong>
                                     </span>
                     @enderror
                     <input id="email" type="email"
@@ -35,7 +36,7 @@
 
                     @error('phone')
                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
+                                        <strong style="color: red">{{ $message }}</strong>
                                     </span>
                     @enderror
                     <input id="phone" type="text"
@@ -46,7 +47,7 @@
 
                     @error('address')
                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
+                                        <strong style="color: red">{{ $message }}</strong>
                                     </span>
                     @enderror
                     <input id="address" type="text"
@@ -54,10 +55,11 @@
                            name="address" value="{{ old('address') }}" required autocomplete="address" autofocus
                            placeholder="Address">
 
+                    <label for="cuisine" class="mb-1"> <strong>Cusine</strong></label>
 
                     @error('cuisine')
                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
+                                        <strong style="color: red">{{ $message }}</strong>
                                     </span>
                     @enderror
                     <select id="cuisine" class=" form-control py-1 @error('cuisine') is-invalid @enderror"
@@ -69,7 +71,7 @@
                     <br>
                     @error('password')
                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
+                                        <strong style="color: red">{{ $message }}</strong>
                                     </span>
                     @enderror
                     <input id="password" type="password"
@@ -85,7 +87,7 @@
 
                     @error('image')
                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
+                                        <strong style="color: red">{{ $message }}</strong>
                                     </span>
                     @enderror
                     <label for="image"

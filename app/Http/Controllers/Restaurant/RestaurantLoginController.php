@@ -18,7 +18,7 @@ class RestaurantLoginController extends Controller
 
     public function getLogin()
     {
-        return view('restaurant.restaurant-login');
+        return view('restaurant.login');
     }
 
     public function postLogin(LoginFormRequest $request)

@@ -18,7 +18,7 @@ class CustomerLoginController extends Controller
 
     public function getLogin()
     {
-        return view('customer.customer-login');
+        return view('customer.login');
     }
 
     public function postLogin(LoginFormRequest $request)

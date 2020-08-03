@@ -9,11 +9,11 @@
             <div class="container px-5 py-10 mx-auto flex flex-wrap items-center">
 
                 <div class="lg:w-2/6 md:w-1/2 bg-gray-200 rounded-lg p-8 flex flex-col md:mx-auto w-full mt-10 md:mt-0">
-                    <h1 class="text-gray-900 text-lg font-medium title-font mb-5"><strong>Customer Register</strong></h1>
+                    <h1 class="text-gray-900 text-lg font-medium title-font mb-5 text-center"><strong>Customer Register</strong></h1>
 
                     @error('name')
                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
+                                        <strong style="color: red">{{ $message }}</strong>
                                     </span>
                     @enderror
                     <input id="name" type="text"
@@ -24,7 +24,7 @@
 
                     @error('email')
                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
+                                        <strong style="color: red">{{ $message }}</strong>
                                     </span>
                     @enderror
                     <input id="email" type="email"
@@ -35,7 +35,7 @@
 
                     @error('phone')
                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
+                                        <strong style="color: red">{{ $message }}</strong>
                                     </span>
                     @enderror
                     <input id="phone" type="text"
@@ -46,7 +46,7 @@
 
                     @error('address')
                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
+                                        <strong style="color: red">{{ $message }}</strong>
                                     </span>
                     @enderror
                     <input id="address" type="text"
@@ -54,10 +54,10 @@
                            name="address" value="{{ old('address') }}" required autocomplete="address" autofocus
                            placeholder="Address">
 
-
+                    <label for="diet-type" class="mb-1"> <strong>Diet Type</strong></label>
                     @error('diet-type')
                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
+                                        <strong style="color: red">{{ $message }}</strong>
                                     </span>
                     @enderror
                     <select id="diet-type" class=" form-control py-1 @error('diet-type') is-invalid @enderror"
@@ -69,7 +69,7 @@
                     <br>
                     @error('password')
                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
+                                        <strong style="color: red">{{ $message }}</strong>
                                     </span>
                     @enderror
                     <input id="password" type="password"
@@ -85,17 +85,9 @@
 
                     @error('image')
                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
+                                        <strong style="color: red">{{ $message }}</strong>
                                     </span>
                     @enderror
-                    <label for="image"
-                           class="col-md-4 col-form-label text-md-right">{{ __(' Add Image') }}</label>
-
-                    <div class="col-md-6">
-                        <input type="file" class="form-control-file @error('image') is-invalid @enderror" id="image"
-                               name="image">
-                    </div>
-
 
                     <button
                         class="text-white bg-blue-500 border-0 py-2 my-3 px-8 focus:outline-none hover:bg-blue-600 rounded text-lg">
