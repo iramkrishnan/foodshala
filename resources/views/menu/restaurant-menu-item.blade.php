@@ -113,10 +113,10 @@
             <div class="py-4 px-6">
                 <h1 class="text-2xl font-semibold text-gray-800"></h1>
 
-                @if($restaurantMenuItem->type == 'vegetarian')
-                    Cuisine:  <span style="color: green" class="py-2 text-lg text-gray-900">{{$restaurantMenuItem->type}}</span>
+                @if($restaurantMenuItem->restaurant->cuisine == 'vegetarian')
+                    Cuisine:  <span style="color: green" class="py-2 text-lg text-gray-900">{{$restaurantMenuItem->restaurant->cuisine}}</span>
                 @else
-                    Cuisine:  <span style="color: red" class="py-2 text-lg text-gray-900">{{$restaurantMenuItem->type}}</span>
+                    Cuisine:  <span style="color: red" class="py-2 text-lg text-gray-900">{{$restaurantMenuItem->restaurant->cuisine}}</span>
 
                 @endif
 
