@@ -30,7 +30,7 @@
                     @enderror
                     <input id="password" type="password"
                            class="bg-white rounded border border-gray-400 focus:outline-none focus:border-blue-500 text-base px-4 py-2 mb-4 @error('password') is-invalid @enderror"
-                           name="password" value="{{ old('password') }}" required autocomplete="password" autofocus
+                           name="password" required autocomplete="password" autofocus
                            placeholder="Password">
 
 

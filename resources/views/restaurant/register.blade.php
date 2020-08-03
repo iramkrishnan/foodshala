@@ -42,7 +42,7 @@
                     <input id="phone" type="text"
                            class="bg-white rounded border border-gray-400 focus:outline-none focus:border-blue-500 text-base px-4 py-2 mb-4 @error('phone') is-invalid @enderror"
                            name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus
-                           placeholder="phone">
+                           placeholder="Phone">
 
 
                     @error('address')
@@ -91,7 +91,7 @@
                                     </span>
                     @enderror
                     <label for="image"
-                           class="col-md-4 col-form-label text-md-right">{{ __(' Add Image') }}</label>
+                           class="col-md-4 col-form-label text-md-right"><strong>Image</strong></label>
 
                     <div class="col-md-6">
                         <input type="file" class="form-control-file @error('image') is-invalid @enderror" id="image"
