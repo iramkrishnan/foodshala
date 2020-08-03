@@ -47,7 +47,7 @@ class RestaurantController extends Controller
 
     public function getList()
     {
-        $restaurants = Restaurant::paginate(16);
+        $restaurants = Restaurant::orderBy('created_at', 'DESC')->paginate(16);
 
         return view('restaurant.list', ['restaurants' => $restaurants]);
     }
