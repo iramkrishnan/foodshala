@@ -21,7 +21,7 @@ class RestaurantTableSeeder extends Seeder
             $restaurant->save();
 
             factory(RestaurantMenuItem::class, 50)->make()->each(function (RestaurantMenuItem $restaurantMenuItem) use ($dietType, $restaurant, $faker) {
-                $restaurantMenuItem->menu_item_id = $faker->numberBetween(1, 200);
+                $restaurantMenuItem->menu_item_id = $faker->numberBetween(1, 130);
                 $restaurantMenuItem->restaurant_id = $restaurant->id;
                 $restaurantMenuItem->type = $restaurant->type == 'vegetarian' ? 'vegetarian' : $dietType[array_rand($dietType)];
                 $restaurantMenuItem->save();
