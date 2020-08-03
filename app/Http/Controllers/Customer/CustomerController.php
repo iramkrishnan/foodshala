@@ -102,6 +102,6 @@ class CustomerController extends Controller
             ->where('customer_id', '=', request()->user()->id)
             ->delete();
 
-        return 'Order Placed';
+        return view('cart.order-confirm', ['orderId' => $order->id]);
     }
 }
