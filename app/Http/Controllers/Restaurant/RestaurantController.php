@@ -31,7 +31,7 @@ class RestaurantController extends Controller
 
     public function getMenu(Restaurant $restaurant)
     {
-        $restaurantMenuItems = $restaurant->restaurantMenuItems()->paginate(15);
+        $restaurantMenuItems = $restaurant->restaurantMenuItems()->paginate(8);
 
         return view('restaurant.restaurant-menu', ['restaurant' => $restaurant, 'restaurantMenuItems' => $restaurantMenuItems,]);
     }

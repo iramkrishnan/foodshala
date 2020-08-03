@@ -99,10 +99,10 @@
     </section>
 
     <div id="app" class="bg-blue-100 max-w-sm bg-white shadow-lg rounded-lg overflow-hidden mx-auto">
-        <github-user-card username=""></github-user-card>
+        <restaurant-info></restaurant-info>
     </div>
 
-    <script type="text/x-template" id="github-user-card-template">
+    <script type="text/x-template" id="restaurant-info-template">
         <a href="/{{$restaurantMenuItem->restaurant->slug}}">
 
         <div>
@@ -148,8 +148,8 @@
 
     <!-- Your JavaScript Code :) -->
     <script>
-        Vue.component('github-user-card', {
-            template: '#github-user-card-template',
+        Vue.component('restaurant-info', {
+            template: '#restaurant-info-template',
             props: {
                 username: {
                     type: String,
