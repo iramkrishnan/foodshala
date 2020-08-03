@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'home.home');
+Route::post('feedback', 'HomeController@postContactForm')->name('post.feedback.form');
 
 Auth::routes();
 
