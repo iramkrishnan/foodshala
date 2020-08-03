@@ -40,8 +40,8 @@ class MenuController extends Controller
 
     public function getInfo(MenuItem $menuItem)
     {
-        $restaurants = $menuItem->restaurants()->orderBy('price')->paginate(10);
+        $restaurants = $menuItem->restaurants()->orderBy('price')->paginate(16);
 
-        return view('menu.menu-item', ['menuItem' => $menuItem, 'restaurants' => $restaurants]);
+        return view('menu.item', ['menuItem' => $menuItem, 'restaurants' => $restaurants]);
     }
 }

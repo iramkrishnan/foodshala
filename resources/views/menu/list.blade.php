@@ -3,7 +3,16 @@
 @section('content')
 
     <section class="text-gray-700 body-font">
-        <div class="container px-5 py-24 mx-auto">
+        <div class="container px-5 pt-24 mx-auto">
+            <div class="flex flex-wrap w-full mb-20 flex-col items-center text-center">
+                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">
+                    Browse from our rich menu to find your favourite food</h1>
+            </div>
+        </div>
+    </section>
+
+    <section class="text-gray-700 body-font">
+        <div class="container px-5 pb-24 mx-auto">
             <div class="flex flex-wrap -m-4">
 
                 @foreach($menuItems as $menuItem)
