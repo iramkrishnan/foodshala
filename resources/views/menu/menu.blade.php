@@ -1,22 +1,30 @@
-@extends('layouts.app')
+@extends('layouts.base')
 
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">{{ __('Menu') }}</div>
-                    @foreach($menuItems as $menuItem)
-                        <li><a href="/menu/{{$menuItem->slug}}">{{$menuItem->menu_item}}</a></li>
-                        <hr>
-                    @endforeach
 
+    <section class="text-gray-700 body-font">
+        <div class="container px-5 py-24 mx-auto">
+            <div class="flex flex-wrap -m-4">
+
+                @foreach($menuItems as $menuItem)
+                <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
+                    <a class="block relative h-48 rounded overflow-hidden" href="/menu/{{$menuItem->slug}}">
+                        <img alt="" class="object-cover object-center w-full h-full block"
+                             src="https://source.unsplash.com/421x261/?food,{{$menuItem->menu_item}}">
+                    </a>
+                    <div class="mt-4">
+                        <h1 class="text-gray-900 title-font text-lg font-medium">{{$menuItem->menu_item}}</h1>
+                        <p class="mt-1">$16.00</p>
+                    </div>
                 </div>
-                <div class="container text-center my-2">
-                    {{ $menuItems->links() }}
-                </div>
+
+                @endforeach
+
 
             </div>
+            <div class="my-5">
+                {{ $menuItems->links() }}
+            </div>
         </div>
-    </div>
+    </section>
 @endsection
