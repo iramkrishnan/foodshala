@@ -15,7 +15,7 @@
         Diet Type: {{$data['diet_type']}}
         Enjoy the food!
 
-        Thanks,<br>
+        Thanks,
         {{ config('app.name') }}
 
     @else
@@ -34,7 +34,7 @@
 
         Serve well!
 
-        Thanks,<br>
+        Thanks,
         {{ config('app.name') }}
 
     @endif

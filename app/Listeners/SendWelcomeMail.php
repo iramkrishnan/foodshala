@@ -2,8 +2,6 @@
 
 namespace App\Listeners;
 
-use App\Events\NewCustomerRegisteredEvent;
-use App\Mail\AdminNotificationMail;
 use App\Mail\WelcomeUserMail;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;

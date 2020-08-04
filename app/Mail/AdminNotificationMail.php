@@ -20,6 +20,6 @@ class AdminNotificationMail extends Mailable
 
     public function build()
     {
-        return $this->markdown('email.admin', ['feedback' => $this->data]);
+        return $this->markdown('email.admin', ['data' => $this->data]);
     }
 }
