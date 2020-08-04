@@ -1,11 +1,9 @@
 # FoodShala 
 - **FoodShala is an online food ordering platform with the best restaurants in town and tastiest menu**
-<br>
 - **This project is hosted at http://foodshala.ramkrishnan.live**
-<br>
 - **FoodShala is developed using Laravel**
 
-##Pre-requisites
+## Pre-requisites
 To run the project locally, you need to have the following:
 - **PHP** (v7.2+) - https://www.php.net/manual/en/install.php
 - **Composer** - https://getcomposer.org/download/
@@ -16,12 +14,14 @@ To run the project locally, you need to have the following:
 
 - **Clone the project**
 <br>
+
 `git clone https://github.com/ramkrishnan6/foodshala.git`
 
 - **Change directory**
 <br>
-`cd foodshala
-`
+
+`cd foodshala`
+
 ## Setup Development Environment
 
 - **Create a database in mysql** 
@@ -31,23 +31,27 @@ To run the project locally, you need to have the following:
 
 - **Install packages using composer**
 <br>
+
 `composer install`
 
 - **Generate a `.env` file**
 <br>
+
 `cp .env-example .env`
 
 - **Generate an app key**
 <br>
+
 `php artisan key:generate`
 
 - **Link the local storage directory to public**
 <br>
+
 `php artisan storage:link`
 
 <br>
 
-###Make the following changes to your `.env` file:
+### Make the following changes to your `.env` file:
 
 - **Specify an admin email to receive notifications** 
 ```
@@ -88,7 +92,7 @@ SESSION_LIFETIME=120
 ```
 <br>
 
-###Migrate Database and seed data
+### Migrate Database and seed data
 
 `php artisan migrate:fresh --seed`
 
@@ -98,7 +102,7 @@ SESSION_LIFETIME=120
 `php artisan serve`
 
 
-##Pages
+## Pages
 
 - Home Page `/`
 
@@ -160,21 +164,25 @@ SESSION_LIFETIME=120
 
 ```
 
-##Database Seed
+## Database Seed
 
-###The following will get created upon database seeding
+### The following will get created upon database seeding
 When you run `php artisan migrate:fresh --seed`
 
 - **250 Customers** 
 <br>
+
 &nbsp;&nbsp; Email ID: c0@0, c2@2 .. c249@249 
 <br> 
+
 &nbsp;&nbsp; Password: password
 
 - **150 Restaurants**
 <br>
+
 &nbsp;&nbsp; Email ID: r0@0, r2@2 .. r149@149 
 <br> 
+
 &nbsp;&nbsp; Password: password
 
 
@@ -182,22 +190,25 @@ When you run `php artisan migrate:fresh --seed`
 
 - **7500 Restaurant Menu Items**
 <br>
+
 &nbsp;&nbsp; Each restaurant will have 50 items in their menu
 
 - **1000 Orders**
 <br>
+
 &nbsp;&nbsp; Randomly belonging to 250 customers
 
 - **5000 Order Details** 
 <br>
+
 &nbsp;&nbsp; 5 entries per order - denotes the number of items in that order
 
 **PS: Seeding database can take a while, usually 2-3 minutes**
 
 
-##Important Note
+## Important Note
 
-###Regaring Sending Email Notification
+### Regaring Sending Email Notification
 
 **Email notifications are sent in the following events:**
 
@@ -209,7 +220,7 @@ When you run `php artisan migrate:fresh --seed`
 
 - Feedback form is submitted (to admin only)
 
-###Regarding Process Jobs
+### Regarding Process Jobs
 - All the emails are sent in the background without having the user wait
 
 - This is achieved using queue jobs and Events, Listeners in Laravel
@@ -224,7 +235,7 @@ php artisan queue:work > jobs.jobs.log &
 
 - This will create a new file `jobs.log` which will contain the log of the jobs performed by the queue worker
 
-###Regarding 130 unique food items
+### Regarding 130 unique food items
 
 - To generate 130 unique food items, I have made use of a Custom API, endpoints to which are as follows:
 
