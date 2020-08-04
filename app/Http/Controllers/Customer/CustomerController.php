@@ -25,7 +25,7 @@ class CustomerController extends Controller
             ->with('orderDetails')
             ->where('customer_id', '=', request()->user()->id)
             ->orderBy('created_at', 'DESC')
-            ->paginate(2);
+            ->paginate(3);
 
         return view('customer.customer-home', ['orders' => $orders]);
     }

@@ -17,7 +17,7 @@ class RestaurantTableSeeder extends Seeder
         $dietType = ['vegetarian', 'non-vegetarian'];
 
         factory(Restaurant::class, 150)->make()->each(function (Restaurant $restaurant, $key) use ($dietType, $faker) {
-            $restaurant->email = $key . '@' . $key;
+            $restaurant->email = 'r' . $key . '@' . $key;
             $restaurant->save();
 
             factory(RestaurantMenuItem::class, 50)->make()->each(function (RestaurantMenuItem $restaurantMenuItem) use ($dietType, $restaurant, $faker) {

@@ -94,7 +94,7 @@
                             <path d="M22 4L12 14.01l-3-3"></path>
                         </svg>
                         <span
-                            class="title-font font-medium">Cooken and packed by following WHO safety regulations</span>
+                            class="title-font font-medium">Cooked and packed by following WHO safety regulations</span>
                     </div>
                 </div>
                 <div class="p-2 sm:w-1/2 w-full">

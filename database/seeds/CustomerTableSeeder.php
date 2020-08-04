@@ -12,8 +12,8 @@ class CustomerTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Customer::class, 5)->make()->each(function (Customer $customer, $key) {
-            $customer->email = chr(97 + $key) . '@' . chr(97 + $key);
+        factory(Customer::class, 250)->make()->each(function (Customer $customer, $key) {
+            $customer->email = 'c' . $key . '@' . $key;
             $customer->save();
         });
     }
