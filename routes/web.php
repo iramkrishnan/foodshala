@@ -45,10 +45,7 @@ Route::prefix('cart')->group(function () {
     Route::post('', 'Customer\CustomerController@postCart')->name('post.customer.cart');
 });
 
-Route::prefix('checkout')->group(function () {
-    Route::get('', 'Customer\CustomerController@getCheckout')->name('get.customer.checkout');
-    Route::post('', 'Customer\CustomerController@postOrder')->name('post.customer.order');
-});
+Route::post('checkout', 'Customer\CustomerController@postOrder')->name('post.customer.order');
 
 Route::get('restaurants', 'Restaurant\RestaurantController@getList')->name('get.restaurant.list');
 

@@ -77,13 +77,6 @@ class CustomerController extends Controller
         ];
     }
 
-    public function getCheckout()
-    {
-        $data = $this->calculateCart();
-
-        return view('customer.customer-checkout', ['totalAmount' => $data['totalAmount']]);
-    }
-
     public function postOrder()
     {
         $data = $this->calculateCart();
@@ -100,19 +93,20 @@ class CustomerController extends Controller
                 'restaurant_menu_item_id' => $cartItem['restaurantMenuItem']['id'],
                 'quantity' => $cartItem->quantity,
             ]);
+
+            $restaurantData = [
+                'type' => 'restaurant',
+                'name' => $cartItem['restaurantMenuItem']['restaurant']['name'],
+                'orderId' => $order->id,
+                'email' => $cartItem['restaurantMenuItem']['restaurant']['email'],
+            ];
+            event(new OrderPlacedEvent($restaurantData));
         }
 
         $customerCart = CustomerCart::query()
             ->with('customer')
             ->where('customer_id', '=', request()->user()->id)
             ->first();
-
-        $restaurantData = [
-            'type' => 'restaurant',
-            'name' => $cartItem['restaurantMenuItem']['restaurant']['name'],
-            'orderId' => $order->id,
-            'email' => $cartItem['restaurantMenuItem']['restaurant']['email'],
-        ];
 
         $customerData = [
             'type' => 'customer',
@@ -121,7 +115,6 @@ class CustomerController extends Controller
             'email' => $customerCart['customer']['email'],
         ];
 
-        event(new OrderPlacedEvent($restaurantData));
         event(new OrderPlacedEvent($customerData));
 
         $customerCart->delete();
