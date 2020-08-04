@@ -14,16 +14,16 @@ class FeedbackFormEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $feedback;
+    public $data;
 
     /**
      * Create a new event instance.
      *
-     * @param $feedback
+     * @param $data
      */
-    public function __construct($feedback)
+    public function __construct($data)
     {
-        $this->feedback = $feedback;
+        $this->data = $data;
     }
 
     /**

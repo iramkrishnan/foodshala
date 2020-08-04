@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Events\FeedbackFormEvent;
-use App\FeedbackForm;
 use App\Http\Requests\FeedbackFormRequest;
 
 class HomeController extends Controller
@@ -15,12 +14,9 @@ class HomeController extends Controller
 
     public function postContactForm(FeedbackFormRequest $request)
     {
-        $feedback = FeedbackForm::create([
-            'email' => $request->validated()['email'],
-            'feedback' => $request->validated()['feedback'],
-        ]);
+        $data = $request->validated();
 
-        event(new FeedbackFormEvent($feedback));
+        event(new FeedbackFormEvent($data));
 
         return redirect()->back();
     }
