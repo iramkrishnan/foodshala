@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers\Customer;
 
+use App\Customer;
 use App\CustomerCart;
+use App\Events\OrderPlacedEvent;
 use App\Http\Controllers\Controller;
+use App\Mail\OrderConfirmed;
 use App\Order;
 use App\OrderDetail;
+use App\Restaurant;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -98,9 +102,29 @@ class CustomerController extends Controller
             ]);
         }
 
-        CustomerCart::query()
+        $customerCart = CustomerCart::query()
+            ->with('customer')
             ->where('customer_id', '=', request()->user()->id)
-            ->delete();
+            ->first();
+
+        $restaurantData = [
+            'type' => 'restaurant',
+            'name' => $cartItem['restaurantMenuItem']['restaurant']['name'],
+            'orderId' => $order->id,
+            'email' => $cartItem['restaurantMenuItem']['restaurant']['email'],
+        ];
+
+        $customerData = [
+            'type' => 'customer',
+            'name' => $customerCart['customer']['name'],
+            'orderId' => $order->id,
+            'email' => $customerCart['customer']['email'],
+        ];
+
+        event(new OrderPlacedEvent($restaurantData));
+        event(new OrderPlacedEvent($customerData));
+
+        $customerCart->delete();
 
         return view('cart.order-confirm', ['orderId' => $order->id]);
     }

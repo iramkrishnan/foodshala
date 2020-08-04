@@ -2,12 +2,12 @@
 
 namespace App\Listeners;
 
-use App\Mail\AdminNotificationMail;
+use App\Mail\OrderConfirmed;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Mail;
 
-class NotifyAdmin implements ShouldQueue
+class SendConfirmationMail implements ShouldQueue
 {
     /**
      * Create the event listener.
@@ -27,6 +27,6 @@ class NotifyAdmin implements ShouldQueue
      */
     public function handle($event)
     {
-        Mail::to(env('ADMIN_EMAIL'))->send(new AdminNotificationMail($event->data));
+        Mail::to($event->data['email'])->send(new OrderConfirmed($event->data));
     }
 }

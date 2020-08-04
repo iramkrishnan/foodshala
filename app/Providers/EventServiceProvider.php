@@ -3,7 +3,11 @@
 namespace App\Providers;
 
 use App\Events\FeedbackFormEvent;
+use App\Events\NewUserRegisteredEvent;
+use App\Events\OrderPlacedEvent;
 use App\Listeners\NotifyAdmin;
+use App\Listeners\SendConfirmationMail;
+use App\Listeners\SendWelcomeMail;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 class EventServiceProvider extends ServiceProvider
@@ -18,11 +22,14 @@ class EventServiceProvider extends ServiceProvider
             NotifyAdmin::class,
         ],
 
-        \App\Events\NewUserRegisteredEvent::class => [
-            \App\Listeners\NotifyAdmin::class,
-            \App\Listeners\SendWelcomeMail::class,
+        NewUserRegisteredEvent::class => [
+            NotifyAdmin::class,
+            SendWelcomeMail::class,
         ],
 
+        OrderPlacedEvent::class => [
+            SendConfirmationMail::class,
+        ],
     ];
 
     /**
