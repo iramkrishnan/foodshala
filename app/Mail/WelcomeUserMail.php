@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class FeedbackNotificationMail extends Mailable
+class WelcomeUserMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -18,8 +18,13 @@ class FeedbackNotificationMail extends Mailable
         $this->data = $data;
     }
 
+    /**
+     * Build the message.
+     *
+     * @return $this
+     */
     public function build()
     {
-        return $this->markdown('email.feedback', ['feedback' => $this->data]);
+        return $this->markdown('email.welcome-user', ['data' => $this->data]);
     }
 }

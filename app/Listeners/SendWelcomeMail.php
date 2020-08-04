@@ -2,12 +2,14 @@
 
 namespace App\Listeners;
 
+use App\Events\NewCustomerRegisteredEvent;
 use App\Mail\AdminNotificationMail;
+use App\Mail\WelcomeUserMail;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Mail;
 
-class NotifyAdmin implements ShouldQueue
+class SendWelcomeMail implements ShouldQueue
 {
     /**
      * Create the event listener.
@@ -27,6 +29,6 @@ class NotifyAdmin implements ShouldQueue
      */
     public function handle($event)
     {
-        Mail::to('ramkrishnan@live.com')->send(new AdminNotificationMail($event->data));
+        Mail::to($event->data['email'])->send(new WelcomeUserMail($event->data));
     }
 }

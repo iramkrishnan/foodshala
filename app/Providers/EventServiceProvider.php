@@ -17,6 +17,12 @@ class EventServiceProvider extends ServiceProvider
         FeedbackFormEvent::class => [
             NotifyAdmin::class,
         ],
+
+        \App\Events\NewUserRegisteredEvent::class => [
+            \App\Listeners\NotifyAdmin::class,
+            \App\Listeners\SendWelcomeMail::class,
+        ],
+
     ];
 
     /**

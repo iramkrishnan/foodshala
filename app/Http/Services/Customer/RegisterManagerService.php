@@ -3,6 +3,7 @@
 namespace App\Http\Services\Customer;
 
 use App\Customer;
+use App\Events\NewUserRegisteredEvent;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -18,6 +19,8 @@ class RegisterManagerService
         $customer->diet_type = $data['diet-type'];
         $customer->password = Hash::make($data['password']);
         $customer->save();
+
+        event(new NewUserRegisteredEvent($customer));
     }
 
     public function login($data, $remember)

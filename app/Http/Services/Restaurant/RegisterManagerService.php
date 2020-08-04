@@ -2,6 +2,7 @@
 
 namespace App\Http\Services\Restaurant;
 
+use App\Events\NewUserRegisteredEvent;
 use App\Restaurant;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -26,6 +27,8 @@ class RegisterManagerService
         }
 
         $restaurant->save();
+
+        event(new NewUserRegisteredEvent($restaurant));
     }
 
     public function login($data, $remember)
