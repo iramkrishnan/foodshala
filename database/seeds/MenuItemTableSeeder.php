@@ -13,7 +13,7 @@ class MenuItemTableSeeder extends Seeder
      */
     public function run()
     {
-        $json = file_get_contents('http://13.126.22.81:8003/food');
+        $json = file_get_contents('http://food-api.ramkrishnan.live/food');
         $data = json_decode($json, true);
 
         factory(MenuItem::class, 130)->make()->each(function (MenuItem $menuItem, $key) use ($data) {
