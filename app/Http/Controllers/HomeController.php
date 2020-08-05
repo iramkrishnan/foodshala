@@ -18,6 +18,6 @@ class HomeController extends Controller
 
         event(new FeedbackFormEvent($data));
 
-        return redirect()->back();
+        return redirect()->back()->with('message', "Thank you for your feedback, We'll be in touch");
     }
 }
