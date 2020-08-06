@@ -158,30 +158,30 @@ When you run `php artisan migrate:fresh --seed`
 
 - **250 Customers**
 
-Email ID: c0@0, c1@1 .. c249@249
+    Email ID: c0@0, c2@2 .. c249@249
 
-Password: password
+    Password: password
 
 - **150 Restaurants**
 
-Email ID: r0@0, r1@1 .. r149@149
+    Email ID: r0@0, r2@2 .. r149@149
 
-Password: password
+    Password: password
 
 - **130 Unique Menu Items**
 - **7500 Restaurant Menu Items**
 
-Each restaurant will have 50 items in their menu
+    Each restaurant will have 50 items in their menu
 
 - **1000 Orders**
 
-Randomly belonging to 250 customers
+    Randomly belonging to 250 customers
 
 - **5000 Order Details**
 
-5 entries per order - denotes the number of items in that order
+    5 entries per order - denotes the number of items in that order
 
-**PS: Seeding database can take a while, usually 2-3 minutes**
+    **PS: Seeding database can take a while, usually 2-3 minutes**
 
 ## Important Note
 
