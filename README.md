@@ -6,6 +6,8 @@
 
 ## Pre-requisites
 
+- **For Ubuntu / Debian based systems, you can refer to my Laravel Development Setup documentation at: <br> https://github.com/ramkrishnan6/laravel-docs/blob/master/laravel-setup.md**
+
 To run the project locally, you need to have the following: 
 
 - **PHP** (v7.2+) - https://www.php.net/manual/en/install.php
@@ -158,13 +160,13 @@ When you run `php artisan migrate:fresh --seed`
 
 - **250 Customers**
 
-    Email ID: c0@0, c2@2 .. c249@249
+    Email ID: c0@0, c1@1 .. c249@249
 
     Password: password
 
 - **150 Restaurants**
 
-    Email ID: r0@0, r2@2 .. r149@149
+    Email ID: r0@0, r1@1 .. r149@149
 
     Password: password
 
