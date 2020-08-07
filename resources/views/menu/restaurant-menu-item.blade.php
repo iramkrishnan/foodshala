@@ -2,6 +2,12 @@
 
 @section('content')
 
+    @if(session()->get('message'))
+        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 mt-4 rounded relative w-1/3 mx-auto" role="alert">
+            <strong class="font-bold">{{session()->get('message')}}</strong>
+        </div>
+    @endif
+
     <section class="text-gray-700 body-font overflow-hidden">
         <div class="container px-5 py-12 mx-auto">
             <div class="lg:w-4/5 mx-auto flex flex-wrap">

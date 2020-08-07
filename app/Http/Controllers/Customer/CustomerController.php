@@ -50,7 +50,7 @@ class CustomerController extends Controller
             'quantity' => $request->all()['quantity'],
         ]);
 
-        return redirect()->back();
+        return redirect()->back()->with('message', 'The item has been successfully added to your cart!');
     }
 
     public function getCart()
