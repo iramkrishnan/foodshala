@@ -2,14 +2,11 @@
 
 namespace App\Http\Controllers\Customer;
 
-use App\Customer;
 use App\CustomerCart;
 use App\Events\OrderPlacedEvent;
 use App\Http\Controllers\Controller;
-use App\Mail\OrderConfirmed;
 use App\Order;
 use App\OrderDetail;
-use App\Restaurant;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -22,9 +19,9 @@ class CustomerController extends Controller
     public function getHome()
     {
         $orders = Order::query()
-            ->with('orderDetails')
             ->where('customer_id', '=', request()->user()->id)
-            ->orderBy('created_at', 'DESC')
+            ->with('orderDetails')
+            ->orderByDesc('created_at')
             ->paginate(3);
 
         return view('customer.customer-home', ['orders' => $orders]);
@@ -34,28 +31,32 @@ class CustomerController extends Controller
     {
         $customerCart = CustomerCart::query()
             ->where('customer_id', '=', $request->user()->id)
-            ->where('restaurant_menu_item_id', '=', $request->all()['restaurant_menu_item_id'])
+            ->where('restaurant_menu_item_id', '=', $request['restaurant_menu_item_id'])
             ->first();
 
         if ($customerCart) {
             $customerCart->update([
-                'quantity' => $customerCart['quantity'] + $request->all()['quantity'],
+                'quantity' => $customerCart['quantity'] + $request['quantity'],
             ]);
-            return redirect()->back();
+
+            return redirect()->back()
+                ->with('message', 'The item has been successfully added to your cart!');
         }
 
         CustomerCart::create([
             'customer_id' => $request->user()->id,
-            'restaurant_menu_item_id' => $request->all()['restaurant_menu_item_id'],
-            'quantity' => $request->all()['quantity'],
+            'restaurant_menu_item_id' => $request['restaurant_menu_item_id'],
+            'quantity' => $request['quantity'],
         ]);
 
-        return redirect()->back()->with('message', 'The item has been successfully added to your cart!');
+        return redirect()->back()
+            ->with('message', 'The item has been successfully added to your cart!');
     }
 
     public function getCart()
     {
         $data = $this->calculateCart();
+
         return view('cart.cart', ['cartItems' => $data['cartItems'], 'totalAmount' => $data['totalAmount']]);
     }
 

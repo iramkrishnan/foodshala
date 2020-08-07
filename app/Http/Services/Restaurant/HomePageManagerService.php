@@ -11,7 +11,7 @@ class HomePageManagerService
         $orderDetails = OrderDetail::query()
             ->where('restaurant_id', '=', request()->user()->id)
             ->with('restaurantMenuItem', 'order')
-            ->orderBy('created_at', 'DESC')
+            ->orderByDesc('created_at')
             ->get();
 
         $orders = [];
