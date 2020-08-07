@@ -46,10 +46,10 @@ Route::prefix('cart')->group(function () {
     Route::post('', 'Customer\CustomerController@postCart')->name('post.customer.cart');
 });
 
-Route::post('checkout', 'Customer\CustomerController@postOrder')->name('post.customer.order');
+Route::post('order', 'Customer\CustomerController@postOrder')->name('post.customer.order');
 
 Route::get('restaurants', 'Restaurant\RestaurantController@getList')->name('get.restaurant.list');
 
-Route::get('{restaurant_slug}/{menu_item_slug}/{id}', 'Restaurant\RestaurantController@getMenuItemInfo')->name('get.restaurant.menu_item_info');
-
 Route::get('{restaurant:slug}', 'Restaurant\RestaurantController@getMenu')->name('get.restaurant.info');
+
+Route::get('{restaurant_slug}/{menu_item_slug}/{id}', 'Restaurant\RestaurantController@getMenuItemInfo')->name('get.restaurant.menu_item_info');
