@@ -5,24 +5,24 @@ namespace App\Http\Controllers\Customer;
 use App\CustomerCart;
 use App\Events\OrderPlacedEvent;
 use App\Http\Controllers\Controller;
+use App\Http\Services\Customer\HomePageManagerService;
 use App\Order;
 use App\OrderDetail;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
 {
-    public function __construct()
+    public HomePageManagerService $homePageManagerService;
+
+    public function __construct(HomePageManagerService $homePageManagerService)
     {
+        $this->homePageManagerService = $homePageManagerService;
         $this->middleware('auth:customer');
     }
 
     public function getHome()
     {
-        $orders = Order::query()
-            ->where('customer_id', '=', request()->user()->id)
-            ->with('orderDetails')
-            ->orderByDesc('created_at')
-            ->paginate(3);
+        $orders = $this->homePageManagerService->getHome();
 
         return view('customer.customer-home', ['orders' => $orders]);
     }
