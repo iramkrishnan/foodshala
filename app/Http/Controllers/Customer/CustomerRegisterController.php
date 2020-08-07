@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 class CustomerRegisterController extends Controller
 {
     use RegistersUsers;
+
     public RegisterManagerService $registerManagerService;
 
     public function __construct(RegisterManagerService $registerManagerService)
