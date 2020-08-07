@@ -18,11 +18,6 @@ class WelcomeUserMail extends Mailable
         $this->data = $data;
     }
 
-    /**
-     * Build the message.
-     *
-     * @return $this
-     */
     public function build()
     {
         return $this->markdown('email.welcome-user', ['data' => $this->data]);
