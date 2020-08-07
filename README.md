@@ -124,6 +124,11 @@ SESSION_LIFETIME=120
 - Menu of a specific Restaurant - `/<restaurant-slug>`
 - Customer Cart - `/cart` - Customers only
 
+### **Note:**
+
+- **Access to customer or restaurant specific pages is handled by using middleware and different auth guards for customer and restaurant.**
+- **This custom configuration can be found in `app/config/auth.php`**
+
 ## Available endpoints:
 
 ```
@@ -143,7 +148,7 @@ SESSION_LIFETIME=120
 
 - GET & POST /cart
 
-- POST /checkout
+- POST /order
 
 - GET /restaurants
 
