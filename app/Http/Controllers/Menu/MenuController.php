@@ -23,7 +23,7 @@ class MenuController extends Controller
             ->orderByDesc('created_at')
             ->paginate(16);
 
-        return view('menu.list', ['menuItems' => $menuItems,]);
+        return view('menu.list', ['menuItems' => $menuItems]);
     }
 
     public function getAdd()
@@ -46,6 +46,6 @@ class MenuController extends Controller
             ->orderBy('price')
             ->paginate(16);
 
-        return view('menu.item', ['menuItem' => $menuItem, 'restaurants' => $restaurants,]);
+        return view('menu.item', ['menuItem' => $menuItem, 'restaurants' => $restaurants]);
     }
 }
