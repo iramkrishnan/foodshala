@@ -15,12 +15,16 @@ class OrderDetail extends Model
 
     public function order(): BelongsTo
     {
-        return $this->belongsTo(Order::class)->with('customer');
+        return $this
+            ->belongsTo(Order::class)
+            ->with('customer');
     }
 
     public function restaurantMenuItem(): BelongsTo
     {
-        return $this->belongsTo(RestaurantMenuItem::class)->with('menuItem', 'restaurant');
+        return $this
+            ->belongsTo(RestaurantMenuItem::class)
+            ->with('menuItem', 'restaurant');
     }
 
     public function menuItem(): BelongsTo
