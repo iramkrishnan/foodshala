@@ -13,7 +13,7 @@ class AddMenuItemFormRequest extends FormRequest
         return [
             'menu_item' => 'required|string',
             'price' => 'required|int|min:1',
-            'type' => ["required", Rule::in(['vegetarian', 'non-vegetarian']), new VegRestaurantCannotHaveNonVegMenuItem],
+            'type' => ['required', Rule::in(['vegetarian', 'non-vegetarian']), new VegRestaurantCannotHaveNonVegMenuItem],
             'description' => 'nullable|string|max:256',
             'image' => 'nullable|image',
         ];

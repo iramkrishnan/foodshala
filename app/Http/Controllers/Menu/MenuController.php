@@ -19,7 +19,9 @@ class MenuController extends Controller
 
     public function getList()
     {
-        $menuItems = MenuItem::query()->orderBy('created_at', 'DESC')->paginate(16);
+        $menuItems = MenuItem::query()
+            ->orderByDesc('created_at')
+            ->paginate(16);
 
         return view('menu.list', ['menuItems' => $menuItems,]);
     }
@@ -40,8 +42,10 @@ class MenuController extends Controller
 
     public function getInfo(MenuItem $menuItem)
     {
-        $restaurants = $menuItem->restaurants()->orderBy('price')->paginate(16);
+        $restaurants = $menuItem->restaurants()
+            ->orderBy('price')
+            ->paginate(16);
 
-        return view('menu.item', ['menuItem' => $menuItem, 'restaurants' => $restaurants]);
+        return view('menu.item', ['menuItem' => $menuItem, 'restaurants' => $restaurants,]);
     }
 }
