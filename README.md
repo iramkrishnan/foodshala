@@ -94,7 +94,7 @@ MAIL_FROM_NAME="${APP_NAME}"
 ```
 BROADCAST_DRIVER=log
 CACHE_DRIVER=file
-QUEUE_CONNECTION=database
+QUEUE_CONNECTION=database # Use 'sync' if you do not want to queue jobs
 SESSION_DRIVER=file
 SESSION_LIFETIME=120
 ```
@@ -237,5 +237,6 @@ Request Body (form-data) --> name:Pizza(or whatever you want to add)
 
 ## Regarding Telescope
 
-- I have installed telescope on the application to analyse or track its performance.
+- I have installed Laravel's most famous development tool, **Telescope** on the application to analyse or track its performance.
 - It can be accessed using the `/telescope` route.
+- Find more on [https://laravel.com/docs/7.x/telescope](https://laravel.com/docs/7.x/telescope)
