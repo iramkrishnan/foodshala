@@ -47,6 +47,7 @@ Route::prefix('cart')->group(function () {
 });
 
 Route::post('order', 'Customer\CustomerController@postOrder')->name('post.customer.order');
+Route::get('order', 'Customer\CustomerController@postOrder')->name('get.customer.order');
 
 Route::get('restaurants', 'Restaurant\RestaurantController@getList')->name('get.restaurant.list');
 

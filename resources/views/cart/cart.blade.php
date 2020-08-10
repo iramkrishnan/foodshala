@@ -162,6 +162,16 @@
                 <p>Your total amount is <strong> &#8377; {{$totalAmount}}. </strong> </p>
                 <p>Shall we confirm your order?</p>
 
+                <p class="my-4"><strong>NOTE:</strong></p>
+                <ul>
+                    <li>Payment through stripe is being integrated, which is set to charge a default price of <strong> &#8377; 10/- only.</strong> </li>
+
+                    <li class="my-4">You can either order for free, or try my stripe integration and pay through a card. </li>
+                    <li class="my-4"> Either way, your order will be confirmed! </li>
+                </ul>
+
+
+
 
                 <!--Footer-->
                 <div class="flex justify-end pt-2">
@@ -172,15 +182,66 @@
 
                     <form action="{{route('post.customer.order')}}" method="POST">
                         @csrf
-                            <button class="px-4 bg-indigo-500 p-3 rounded-lg text-white hover:bg-indigo-400">Confirm Order
+                            <button class="px-4 bg-indigo-500 p-3 rounded-lg text-white hover:bg-indigo-400">Order for free
                             </button>
                     </form>
 
-                </div>
+                        <button class="px-4 bg-indigo-500 p-3 rounded-lg text-white hover:bg-indigo-400 mx-4" id="checkout-button-price_1HDvQzL4S25K0qG1lxCAsVMT">Pay
+                        </button>
 
+                </div>
             </div>
         </div>
     </div>
+
+    <!-- STRIPE STARTS -->
+
+    <!-- Load Stripe.js on your website. -->
+    <script src="https://js.stripe.com/v3"></script>
+
+    <button
+        style="background-color:#6772E5;color:#FFF;padding:8px 12px;border:0;border-radius:4px;font-size:1em"
+        id="checkout-button-price_1HDvQzL4S25K0qG1lxCAsVMT"
+        role="link"
+        type="button"
+    >
+        Checkout
+    </button>
+
+    <div id="error-message"></div>
+
+    <script>
+        (function() {
+            var stripe = Stripe('pk_test_51HCrg5L4S25K0qG1Cr4GQOvHtUPtPDns2CzPa7ZzSjohYxxpF062dLi0wtf8dz7xNB2MW3asXMuyHU7zTzkQK50d00LPusdKnb');
+
+            var checkoutButton = document.getElementById('checkout-button-price_1HDvQzL4S25K0qG1lxCAsVMT');
+            checkoutButton.addEventListener('click', function () {
+                // When the customer clicks on the button, redirect
+                // them to Checkout.
+                stripe.redirectToCheckout({
+                    lineItems: [{price: 'price_1HDvQzL4S25K0qG1lxCAsVMT', quantity: 1}],
+                    mode: 'payment',
+                    // Do not rely on the redirect to the successUrl for fulfilling
+                    // purchases, customers may not always reach the success_url after
+                    // a successful payment.
+                    // Instead use one of the strategies described in
+                    // https://stripe.com/docs/payments/checkout/fulfillment
+                    successUrl: 'http://foodshala.ramkrishnan.live/success',
+                    cancelUrl: 'http://foodshala.ramkrishnan.live/canceled',
+                })
+                    .then(function (result) {
+                        if (result.error) {
+                            // If `redirectToCheckout` fails due to a browser or network
+                            // error, display the localized error message to your customer.
+                            var displayError = document.getElementById('error-message');
+                            displayError.textContent = result.error.message;
+                        }
+                    });
+            });
+        })();
+    </script>
+
+    <!-- STRIPE ENDS -->
 
     <script>
         var openmodal = document.querySelectorAll('.modal-open')

@@ -41,12 +41,18 @@ class CustomerController extends Controller
     {
         $data = $this->cartManagerService->calculateCart(request());
 
-        return view('cart.cart', ['cartItems' => $data['cartItems'], 'totalAmount' => $data['totalAmount']]);
+        $stripeKey = env('STRIPE_KEY');
+
+        return view('cart.cart', ['cartItems' => $data['cartItems'], 'totalAmount' => $data['totalAmount'], 'stripeKey' => $stripeKey]);
     }
 
     public function postOrder()
     {
         $data = $this->cartManagerService->calculateCart(request());
+
+        if($data['totalAmount'] == 0) {
+            return redirect(route('get.customer.cart'));
+        }
 
         $orderId = $this->orderManagerService->postOrder($data);
 
