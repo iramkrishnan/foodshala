@@ -1,7 +1,7 @@
 # FoodShala
 
 - **FoodShala is an online food ordering platform with the best restaurants in town and tastiest menu**
-- **This project is hosted at http://foodshala.ramkrishnan.live**
+- **This project is hosted at https://foodshala.ramkrishnan.live**
 - **FoodShala is developed using Laravel**
 
 ## Pre-requisites
@@ -240,3 +240,12 @@ Request Body (form-data) --> name:Pizza(or whatever you want to add)
 - I have installed Laravel's most famous development tool, **Telescope** on the application to analyse or track its performance.
 - It can be accessed using the `/telescope` route.
 - Find more on [https://laravel.com/docs/7.x/telescope](https://laravel.com/docs/7.x/telescope)
+
+## Regarding Stripe
+
+- Stripe payment has been integrated in this project as an optional step for customers to order food.
+- Stripe's **'Client only One-time Checkout'** has been used, so the price is set to Rs. 10 only.
+- If you want to replicate the integration, refer to the stripe documentation at [https://stripe.com/docs/payments/checkout/accept-a-payment](https://stripe.com/docs/payments/checkout/accept-a-payment)
+- Declare a variable in `.env`: `STRIPE_KEY=pk_test_your_stripe_key`
+- In `/resources/views/cart/cart.blade.php`, make the necessary changes to the 'Pay" button and Stripe's Javascript code to handle the redirect.
+- **IMPORTANT - Stripe payment only works on deployment when served through HTTPS. Although, you can make use of the 'test sandbox' when under development.**
