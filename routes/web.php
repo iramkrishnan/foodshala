@@ -8,6 +8,7 @@ Route::post('feedback', 'HomeController@postContactForm')->name('post.feedback.f
 Route::get('home', 'HomeController@index')->name('home');
 
 Route::get('menu/search', 'Menu\MenuController@search')->name('get.menu.search');
+Route::get('restaurant/search', 'Restaurant\RestaurantController@search')->name('get.restaurant.search');
 
 Auth::routes();
 

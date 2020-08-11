@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Services\Restaurant\HomePageManagerService;
 use App\Restaurant;
 use App\RestaurantMenuItem;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RestaurantController extends Controller
 {
@@ -14,7 +16,7 @@ class RestaurantController extends Controller
     public function __construct(HomePageManagerService $homePageManagerService)
     {
         $this->homePageManagerService = $homePageManagerService;
-        $this->middleware('auth:restaurant', ['except' => ['getMenuItemInfo', 'getMenu', 'getList']]);
+        $this->middleware('auth:restaurant', ['except' => ['getMenuItemInfo', 'getMenu', 'getList', 'search']]);
     }
 
     public function getHome()
@@ -47,5 +49,16 @@ class RestaurantController extends Controller
         $restaurants = Restaurant::orderByDesc('created_at')->paginate(16);
 
         return view('restaurant.list', ['restaurants' => $restaurants]);
+    }
+
+    public function search(Request $request)
+    {
+        $restaurants = '';
+        if ($request->ajax()) {
+            $restaurants = DB::table('restaurants')
+                ->where('name', 'LIKE', '%' . $request->search . "%")
+                ->get();
+        }
+        return Response($restaurants);
     }
 }

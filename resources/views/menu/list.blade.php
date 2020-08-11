@@ -26,11 +26,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 
     <!-- Search Box -->
-    <section class="bg h-50 p-8 mb-3 flex flex-wrap">
+    <section class="bg h-50 p-8 flex flex-wrap">
         <div class="container mx-auto flex flex-wrap">
             <input
                 class="border-2 border-blue-500 w-3/4 mx-auto h-16 px-3 rounded focus:outline-none focus:shadow-outline lg:text-xl md:text-md px-8 shadow-lg"
-                type="text" id="search" name="search" placeholder="Search your favourite food">
+                type="text" id="search" name="search" placeholder="Search food items">
             <button type="button" class="mx-auto" onclick="myFunction()">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                     <path
@@ -93,7 +93,7 @@
                             '                    </a>\n' +
                             '                    <div class="mt-4">\n' +
                             '                        <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1"><a href="/menu/' + data[i]['slug'] + ' ">Food</a></h3>\n' +
-                            '                        <h1 class="text-gray-900 title-font text-lg font-medium"><a href="/menu/ ' + data[i]['slug'] + ' "> ' + data[i]['menu_item'] + '</a></h1>\n' +
+                            '                        <h1 class="text-gray-900 title-font text-lg font-medium"><a href="/menu/' + data[i]['slug'] + ' "> ' + data[i]['menu_item'] + '</a></h1>\n' +
                             '                    </div>\n' +
                             '                </div>'
                     }
