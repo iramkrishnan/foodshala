@@ -6,6 +6,8 @@ use App\Http\Requests\Menu\AddMenuItemFormRequest;
 use App\Http\Services\Menu\MenuItemManagerService;
 use App\MenuItem;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MenuController extends Controller
 {
@@ -13,7 +15,7 @@ class MenuController extends Controller
 
     public function __construct(MenuItemManagerService $menuItemManagerService)
     {
-        $this->middleware('auth:restaurant', ['except' => ['getList', 'getInfo']]);
+        $this->middleware('auth:restaurant', ['except' => ['getList', 'getInfo', 'search']]);
         $this->menuItemManagerService = $menuItemManagerService;
     }
 
@@ -47,5 +49,16 @@ class MenuController extends Controller
             ->paginate(16);
 
         return view('menu.item', ['menuItem' => $menuItem, 'restaurants' => $restaurants]);
+    }
+
+    public function search(Request $request)
+    {
+        $menuItems = '';
+        if ($request->ajax()) {
+            $menuItems = DB::table('menu_items')
+                ->where('menu_item', 'LIKE', '%' . $request->search . "%")
+                ->get();
+        }
+        return Response($menuItems);
     }
 }

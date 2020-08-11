@@ -7,6 +7,8 @@ Route::view('/', 'home.home');
 Route::post('feedback', 'HomeController@postContactForm')->name('post.feedback.form');
 Route::get('home', 'HomeController@index')->name('home');
 
+Route::get('menu/search', 'Menu\MenuController@search')->name('get.menu.search');
+
 Auth::routes();
 
 Route::prefix('restaurant')->group(function () {
