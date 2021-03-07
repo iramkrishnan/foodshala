@@ -40,8 +40,7 @@ class RegisterManagerService
     public function makeSlug($name)
     {
         $slug = Str::slug($name);
-
-        $count = Restaurant::whereRaw("slug RLIKE '^{$slug}(-[0-9]+)?$'")->count();
+	$count = Restaurant::select('slug')->where('slug', 'like', $slug.'%')->count();
 
         return $count ? "{$slug}-{$count}" : $slug;
     }
